@@ -1,0 +1,20 @@
+{
+  "flags": {
+    "png": "https://flagcdn.com/w320/gs.png",
+    "svg": "https://flagcdn.com/gs.svg",
+    "alt": ""
+  },
+  "name": {
+    "common": "South Georgia",
+    "official": "South Georgia and the South Sandwich Islands",
+    "nativeName": {
+      "eng": {
+        "official": "South Georgia and the South Sandwich Islands",
+        "common": "South Georgia"
+      }
+    }
+  },
+  "capital": ["King Edward Point"],
+  "region": "Antarctic",
+  "population": 30
+}

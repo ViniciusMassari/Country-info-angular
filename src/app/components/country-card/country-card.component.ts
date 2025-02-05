@@ -4,8 +4,5 @@ import { Component } from '@angular/core';
   selector: 'app-country-card',
   imports: [],
   templateUrl: './country-card.component.html',
-  styleUrl: './country-card.component.css'
 })
-export class CountryCardComponent {
-
-}
+export class CountryCardComponent {}
