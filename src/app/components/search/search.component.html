@@ -1,0 +1,31 @@
+<div class="flex flex-wrap justify-around gap-4 sm:gap-0">
+  <form class="flex flex-col gap-2" #form="ngForm" (ngSubmit)="onSubmit(form)">
+    <div class="flex gap-4">
+      <label class="input rounded-full input-bordered flex items-center gap-2 ">
+        Country name
+        <input data-test="input" required minlength="3" #countryName="ngModel" ngModel id="countryName"
+          name="countryName" type="text" class="grow" placeholder="Brazil..." />
+      </label>
+      <button data-test="sendButton" [disabled]="form.invalid" type="submit"
+        class="btn btn-outline transition rounded-2xl">Search</button>
+    </div>
+
+
+    <p class="text-error" [class.invisible]="!countryName.hasError('minlength')"
+      [class.block]="countryName.hasError('minlength')">
+      Invalid input, a value of at least 3 characters is required
+    </p>
+
+
+  </form>
+
+  <select #select (change)="onChange(select)" data-test="filterSelector"
+    class="select rounded-full select-bordered w-full max-w-xs">
+    <option value="">None</option>
+    <option value='Africa'>Africa</option>
+    <option value='America'>America</option>
+    <option value='Asia'>Asia</option>
+    <option value='Europe'>Europe</option>
+    <option value='Oceania'>Oceania</option>
+  </select>
+</div>

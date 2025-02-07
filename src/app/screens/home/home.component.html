@@ -1,6 +1,4 @@
-<section class="container flex flex-wrap items-center justify-center w-full gap-10">
-
-  <app-country-card [countryCardInfo]="countryData[0]" />
-
-
+<section class="flex flex-col p-4 w-full">
+  <app-search (filterValue)="changeFilter($event)" class="mb-5"></app-search>
+  <app-cards-wrapper [filter]="filter"></app-cards-wrapper>
 </section>

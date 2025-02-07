@@ -1,13 +1,19 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnChanges } from '@angular/core';
 import { CountryCardComponent } from '../../components/country-card/country-card.component';
-import countryData from '../../../assets/data/countryMockedData.json';
 import { CountryCardDetails } from '../../../types/countryCardDetails';
+import { SearchComponent } from '../../components/search/search.component';
+import { CardsWrapperComponent } from '../../components/cards-wrapper/cards-wrapper.component';
 
 @Component({
   selector: 'app-home',
-  imports: [CountryCardComponent],
+  imports: [CardsWrapperComponent, SearchComponent],
   templateUrl: './home.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent {
-  public countryData: CountryCardDetails[] = countryData;
+  public filter: string = '';
+
+  changeFilter(event: string) {
+    this.filter = event;
+  }
 }
