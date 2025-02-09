@@ -1,13 +1,15 @@
 @let countryInfo = this.countryCardInfo();
 
-<div class="card bg-base-100 shadow-xl max-w-80  flex-1">
-  <figure>
-    <img [src]="countryInfo.flags.svg" [alt]="countryInfo.flags.alt" />
-  </figure>
-  <div class="card-body">
-    <h2 class="card-title" data-test="country-name">{{countryInfo.name.official}}</h2>
-    <p class="flex gap-1"><span class="font-bold">Population:</span> {{countryInfo.population}} </p>
-    <p class="flex gap-1"><span class="font-bold">Region:</span>{{countryInfo.region}}</p>
-    <p class="flex gap-1"><span class="font-bold">Capital:</span>{{countryInfo.capital}} </p>
+<a [routerLink]="['/country/', countryInfo.name.common]">
+  <div class="card bg-base-100 shadow-xl max-w-80  flex-1">
+    <figure>
+      <img [src]="countryInfo.flags.svg" [alt]="countryInfo.flags.alt" />
+    </figure>
+    <div class="card-body">
+      <h2 class="card-title" data-test="country-name">{{countryInfo.name.official}}</h2>
+      <p class="flex gap-1"><span class="font-bold">Population:</span> {{countryInfo.population}} </p>
+      <p class="flex gap-1"><span class="font-bold">Region:</span>{{countryInfo.region}}</p>
+      <p class="flex gap-1"><span class="font-bold">Capital:</span>{{countryInfo.capital}} </p>
+    </div>
   </div>
-</div>
+</a>

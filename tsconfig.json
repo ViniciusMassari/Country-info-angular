@@ -14,8 +14,9 @@
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "resolveJsonModule": true,
+    "baseUrl": ".",
     "paths": {
-      "@components/*": ["../../src/app/components/*"]
+      "@components/*": ["./src/app/components/*"]
     },
     "moduleResolution": "bundler",
     "importHelpers": true,
