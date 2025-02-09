@@ -1,7 +1,7 @@
 import { Component, input, InputSignal } from '@angular/core';
 import { CountryCardComponent } from '../country-card/country-card.component';
-import countryData from '../../../assets/data/countryMockedData.json';
-import { CountryCardDetails } from '../../../types/countryCardDetails';
+import countryData from '../../../assets/mocks/data/countryMockedData.json';
+import { CountryCardDetails } from 'src/types/countryCardDetails';
 
 @Component({
   selector: 'app-cards-wrapper',
