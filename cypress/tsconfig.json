@@ -2,14 +2,11 @@
   "compilerOptions": {
     "target": "es5",
     "lib": ["es5", "dom"],
-    "types": ["cypress", "node"],
-    "paths": {
-      "@components/*": ["./src/app/components/*"]
-    }
+    "types": ["cypress", "node"]
   },
   "angularCompilerOptions": {
     "strictTemplates": true
   },
-
-  "include": ["**/*.ts"]
+  "files": ["support/component.ts"],
+  "include": ["**/*.cy.ts"]
 }

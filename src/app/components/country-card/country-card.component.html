@@ -1,9 +1,8 @@
 @let countryInfo = this.countryCardInfo();
-
 <a [routerLink]="['/country/', countryInfo.name.common]">
-  <div class="card bg-base-100 shadow-xl max-w-80  flex-1">
+  <div class="card bg-base-100 shadow-xl max-w-80 max-h-96  ">
     <figure>
-      <img [src]="countryInfo.flags.svg" [alt]="countryInfo.flags.alt" />
+      <img height="400" width="320" [ngSrc]="countryInfo.flags.svg" [alt]="countryInfo.flags.alt" />
     </figure>
     <div class="card-body">
       <h2 class="card-title" data-test="country-name">{{countryInfo.name.official}}</h2>
