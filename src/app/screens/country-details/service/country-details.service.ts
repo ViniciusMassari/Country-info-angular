@@ -1,13 +1,15 @@
 import {
   HttpClient,
   HttpErrorResponse,
+  HttpHeaders,
   HttpParams,
 } from '@angular/common/http';
 import { inject, Injectable, signal, WritableSignal } from '@angular/core';
 import { catchError, retry, throwError, timer } from 'rxjs';
 import { CountryDetails } from 'src/types/countryDetails';
 
-export const COUNTRY_BY_NAME_ENDPOINT = 'restcountries.com/v3.1/name/' as const;
+export const COUNTRY_BY_NAME_ENDPOINT =
+  'https://restcountries.com/v3.1/name/' as const;
 
 @Injectable({
   providedIn: 'root',
@@ -15,17 +17,24 @@ export const COUNTRY_BY_NAME_ENDPOINT = 'restcountries.com/v3.1/name/' as const;
 export class CountryDetailsService {
   private http = inject(HttpClient);
 
-  public errorMessage: WritableSignal<string> = signal('');
-
   getCountryDetailsByCountryName(countryName: string) {
     const params = new HttpParams().set(
       'fields',
       'name,flags,currencies,capital,region,subregion,languages,borders,population'
     );
+    const headers = new HttpHeaders().set(
+      'Content-Type',
+      'application/json; charset=utf-8'
+    );
     return this.http
-      .get<CountryDetails>(COUNTRY_BY_NAME_ENDPOINT + countryName, {
-        params,
-      })
+      .get<CountryDetails[]>(
+        COUNTRY_BY_NAME_ENDPOINT + countryName.toLowerCase(),
+        {
+          params,
+          headers,
+          responseType: 'json',
+        }
+      )
       .pipe(
         retry({
           count: 2,
@@ -42,13 +51,18 @@ export class CountryDetailsService {
   }
 
   private handleError(error: HttpErrorResponse) {
+    console.error('handleerror ', error);
+
     if (error.status === 0) {
-      this.errorMessage.set('Connection error, verify your network');
+      return throwError(
+        () => new Error('Network connection error, try again later')
+      );
     } else if (error.status === 404) {
-      this.errorMessage.set('Country not found, try another search');
+      return throwError(
+        () => new Error('Country not found, verify the search')
+      );
     } else {
-      this.errorMessage.set(`Error returned from server ${error.status}`);
+      return throwError(() => new Error('Unexpected Error, try again later'));
     }
-    return throwError(() => new Error('Unexpected Error, try again later'));
   }
 }

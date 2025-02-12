@@ -1,3 +1,7 @@
+@let countryDetails = this.countryData();
+
+
+
 <section class="container mx-auto mt-2 sd:px-0 border-*">
   <button class="btn" (click)="goBack()">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -7,20 +11,27 @@
     </svg>
     Back
   </button>
+</section>
 
+
+
+
+@if(countryDetails){
+
+<section class="container mx-auto mt-2 sd:px-0 border-* sm:text-xl">
   <div class="mt-6 mx-auto ">
     <section class="justify-center gap-10 flex flex-col items-center   sm:flex-row ">
-      <img class="sm:w-96" [ngSrc]="countryData.flags.svg" width="300" height="300" [alt]="countryData.flags.alt"
+      <img class="sm:w-96" [ngSrc]="countryDetails.flags.svg" width="300" height="300" [alt]="countryDetails.flags.alt"
         priority>
       <div class="mt-8 flex-col sm:flex-row mb-5">
-        <h2 class="text-xl font-black  mb-5">{{countryData.name.common}}</h2>
+        <h2 class="text-xl font-black  mb-5">{{countryDetails.name.common}}</h2>
         <div class="sm:flex sm:gap-5 ">
           <div class="mb-5 font-semibold">
-            <p>Population: <span class="font-light">{{countryData.population.toLocaleString()}}</span> </p>
-            <p>Region: <span class="font-light">{{countryData.region}}</span></p>
-            <p>Sub-Region: <span class="font-light">{{countryData.subregion}}</span></p>
+            <p>Population: <span class="font-light">{{countryDetails.population.toLocaleString()}}</span> </p>
+            <p>Region: <span class="font-light">{{countryDetails.region}}</span></p>
+            <p>Sub-Region: <span class="font-light">{{countryDetails.subregion}}</span></p>
             <p>Capital:
-              <span class="font-light">{{countryData.capital.join(", ")}}</span>
+              <span class="font-light">{{countryDetails.capital.join(", ")}}</span>
             </p>
           </div>
 
@@ -35,7 +46,8 @@
 
         <p class="font-semibold ">Border Countries: </p>
         <ul class="flex flex-wrap max-w-full">
-          <li class="textarea-xs whitespace-nowrap px-3 py-1" *ngFor="let country of borderCountries">{{country}}</li>
+          <li class="textarea-xs whitespace-nowrap px-3 py-1" *ngFor="let country of borderCountries">
+            {{country}}</li>
         </ul>
       </div>
 
@@ -44,3 +56,7 @@
   </div>
 
 </section>
+}
+@else {
+<p class="text-lg text-error text-center">{{errorMessage()}}</p>
+}
