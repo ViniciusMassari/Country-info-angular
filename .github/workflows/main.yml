@@ -23,3 +23,5 @@ jobs:
 
       - name: Run Tests
         run: npm test
+      - name: Run Cypress unit Tests
+        run: npm run cypress:unit
