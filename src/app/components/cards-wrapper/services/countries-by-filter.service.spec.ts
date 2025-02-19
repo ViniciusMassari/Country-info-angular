@@ -9,7 +9,7 @@ import { HttpErrorResponse, provideHttpClient } from '@angular/common/http';
 
 describe('CountryDetailsService', () => {
   const COUNTRY_BY_REGION_FILTER_ENDPOINT =
-    'restcountries.com/v3.1/region/' as const;
+    'https://restcountries.com/v3.1/region/' as const;
 
   let countriesByFilterService: CountriesByFilterService;
   let httpTesting: HttpTestingController;
@@ -35,7 +35,7 @@ describe('CountryDetailsService', () => {
     });
 
     const req = httpTesting.expectOne(
-      'restcountries.com/v3.1/region/europe?fields=flags,name,capital,region,population'
+      'https://restcountries.com/v3.1/region/europe?fields=flags,name,capital,region,population'
     );
 
     // req.flush({});

@@ -5,7 +5,6 @@ import {
   signal,
   WritableSignal,
 } from '@angular/core';
-import countryData from '../../../assets/mocks/data/countryDetailMockedData.json';
 import { NgFor, NgOptimizedImage } from '@angular/common';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { CountryDetails } from 'src/types/countryDetails';
@@ -19,8 +18,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class CountryDetailsComponent implements OnInit {
   protected errorMessage: WritableSignal<string> = signal('');
-  // mocked data
-  // public countryData: CountryDetails = countryData;
   public countryData: WritableSignal<CountryDetails | null> = signal(null);
   protected currencyKeys: string[] = [];
   protected languagesEntries: string = '';
@@ -60,6 +57,8 @@ export class CountryDetailsComponent implements OnInit {
   }
 
   goBack() {
+    console.log('called');
+
     this.router.navigateByUrl('/');
   }
 }

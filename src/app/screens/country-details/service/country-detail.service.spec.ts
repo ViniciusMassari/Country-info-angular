@@ -99,7 +99,7 @@ describe('CountryDetailsService', () => {
       method: 'GET',
       url:
         COUNTRY_BY_NAME_ENDPOINT +
-        'Saudi Arabia?fields=name,flags,currencies,capital,region,subregion,languages,borders,population',
+        'saudi arabia?fields=name,flags,currencies,capital,region,subregion,languages,borders,population',
     });
 
     req.flush({

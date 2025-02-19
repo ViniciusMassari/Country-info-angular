@@ -7,10 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "cypress:unit": "cypress run --component",
-    "cypress:e2e": "cypress run",
-    "test": "ng test",
-    "serve:ssr:countries-info": "node dist/countries-info/server/server.mjs",
-    "cypress:open": "cypress open"
+    "test": "jest",
+    "serve:ssr:countries-info": "node dist/countries-info/server/server.mjs"
   },
   "private": true,
   "dependencies": {

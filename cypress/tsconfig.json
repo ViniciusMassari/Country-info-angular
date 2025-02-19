@@ -7,6 +7,6 @@
   "angularCompilerOptions": {
     "strictTemplates": true
   },
-  "files": ["support/component.ts"],
+  "files": ["support/component.ts", "components/*"],
   "include": ["**/*.cy.ts"]
 }
