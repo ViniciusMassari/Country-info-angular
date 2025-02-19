@@ -1,6 +1,10 @@
-<section class="flex flex-col justify-center sm:flex-row gap-10 flex-wrap">
-  <app-country-card [countryCardInfo]="countryData[0]"></app-country-card>
-  <app-country-card [countryCardInfo]="countryData[0]"></app-country-card>
-  <app-country-card [countryCardInfo]="countryData[0]"></app-country-card>
-  <app-country-card [countryCardInfo]="countryData[0]"></app-country-card>
+@let countryData = this.countryData();
+<section class="flex flex-col items-center justify-center sm:flex-row gap-10 flex-wrap">
+  @if(countryData){
+  @for (country of countryData; track country.name.common) {
+  <app-country-card [countryCardInfo]="country"></app-country-card>
+  }
+  } @else {
+  <span class="loading loading-spinner loading-lg"></span>
+  }
 </section>

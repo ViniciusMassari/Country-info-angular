@@ -35,6 +35,6 @@ it('Search component Test:', () => {
     cy.wrap($select).should('have.value', '');
     cy.wrap($select).select('America');
     cy.get('@filterOutputSpy').should('have.been.called');
-    cy.wrap($select).should('have.value', 'America');
+    cy.wrap($select).should('have.value', 'america');
   });
 });

@@ -1,0 +1,80 @@
+[
+  {
+    "flags": {
+      "png": "https://flagcdn.com/w320/gs.png",
+      "svg": "https://flagcdn.com/gs.svg",
+      "alt": ""
+    },
+    "name": {
+      "common": "South Georgia",
+      "official": "South Georgia and the South Sandwich Islands",
+      "nativeName": {
+        "eng": {
+          "official": "South Georgia and the South Sandwich Islands",
+          "common": "South Georgia"
+        }
+      }
+    },
+    "capital": ["King Edward Point"],
+    "region": "Antarctic",
+    "population": 30
+  },
+  {
+    "flags": {
+      "png": "https://flagcdn.com/w320/gd.png",
+      "svg": "https://flagcdn.com/gd.svg",
+      "alt": "The flag of Grenada features a large central rectangular area surrounded by a red border, with three five-pointed yellow stars centered on the top and bottom borders. The central rectangle is divided diagonally into four alternating triangular areas of yellow at the top and bottom and green on the hoist and fly sides, and a five-pointed yellow star on a red circle is superimposed at its center. A symbolic nutmeg pod is situated on the green hoist-side triangle."
+    },
+    "name": {
+      "common": "Grenada",
+      "official": "Grenada",
+      "nativeName": { "eng": { "official": "Grenada", "common": "Grenada" } }
+    },
+    "capital": ["St. George's"],
+    "region": "Americas",
+    "population": 112519
+  },
+  {
+    "flags": {
+      "png": "https://flagcdn.com/w320/ch.png",
+      "svg": "https://flagcdn.com/ch.svg",
+      "alt": "The flag of Switzerland is square shaped. It features a white Swiss cross centered on a red field."
+    },
+    "name": {
+      "common": "Switzerland",
+      "official": "Swiss Confederation",
+      "nativeName": {
+        "fra": { "official": "Confédération suisse", "common": "Suisse" },
+        "gsw": {
+          "official": "Schweizerische Eidgenossenschaft",
+          "common": "Schweiz"
+        },
+        "ita": { "official": "Confederazione Svizzera", "common": "Svizzera" },
+        "roh": { "official": "Confederaziun svizra", "common": "Svizra" }
+      }
+    },
+    "capital": ["Bern"],
+    "region": "Europe",
+    "population": 8654622
+  },
+  {
+    "flags": {
+      "png": "https://flagcdn.com/w320/sl.png",
+      "svg": "https://flagcdn.com/sl.svg",
+      "alt": "The flag of Sierra Leone is composed of three equal horizontal bands of green, white and blue."
+    },
+    "name": {
+      "common": "Sierra Leone",
+      "official": "Republic of Sierra Leone",
+      "nativeName": {
+        "eng": {
+          "official": "Republic of Sierra Leone",
+          "common": "Sierra Leone"
+        }
+      }
+    },
+    "capital": ["Freetown"],
+    "region": "Africa",
+    "population": 7976985
+  }
+]
