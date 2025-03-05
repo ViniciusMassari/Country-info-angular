@@ -10,8 +10,16 @@ import {
 import { toObservable } from '@angular/core/rxjs-interop';
 import { CountryCardComponent } from '../country-card/country-card.component';
 import type { CountryCardDetails } from 'src/types/countryCardDetails';
-import { distinctUntilChanged, Subject, Subscription, takeUntil } from 'rxjs';
+import {
+  distinctUntilChanged,
+  fromEvent,
+  lastValueFrom,
+  Subject,
+  Subscription,
+  takeUntil,
+} from 'rxjs';
 import { CountriesByFilterService } from './services/countries-by-filter.service';
+import { injectQuery } from '@tanstack/angular-query-experimental';
 
 @Component({
   selector: 'app-cards-wrapper',
@@ -29,30 +37,25 @@ export class CardsWrapperComponent implements OnDestroy {
   public filter$ = toObservable(this.filter);
 
   #filterDestroy = new Subject<void>();
-  protected errorMessage = '';
+
+  query = injectQuery(() => ({
+    queryKey: ['countries'],
+    queryFn: ({ signal }) => {
+      const abort$ = fromEvent(signal, 'abort');
+      return lastValueFrom(
+        this.#countriesByFilterService
+          .getCountriesByFilter(this.filter())
+          .pipe(takeUntil(abort$))
+      );
+    },
+  }));
 
   ngOnInit() {
-    this.#getCountriesDestroy$ = this.#countriesByFilterService
-      .getCountriesByFilter(this.filter())
-      .subscribe({
-        next: (countries) => this.countryData.set(countries),
-        error: (error: Error) => {
-          this.errorMessage = error.message;
-        },
-      });
-
     // will be called only if filter change
     this.filter$
       .pipe(takeUntil(this.#filterDestroy), distinctUntilChanged())
-      .subscribe((filter) => {
-        this.#getCountriesDestroy$ = this.#countriesByFilterService
-          .getCountriesByFilter(filter)
-          .subscribe({
-            next: (countries) => this.countryData.set(countries),
-            error: (error: Error) => {
-              this.errorMessage = error.message;
-            },
-          });
+      .subscribe(() => {
+        this.query.refetch();
       });
   }
 
