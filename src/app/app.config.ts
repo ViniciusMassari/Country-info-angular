@@ -1,5 +1,12 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import {
+  type ApplicationConfig,
+  provideZoneChangeDetection,
+} from '@angular/core';
+import { provideRouter, withRouterConfig } from '@angular/router';
+import {
+  provideTanStackQuery,
+  QueryClient,
+} from '@tanstack/angular-query-experimental';
 
 import { routes } from './app.routes';
 import {
@@ -10,9 +17,10 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes),
+    provideZoneChangeDetection(),
     provideHttpClient(withFetch()),
+    provideTanStackQuery(new QueryClient()),
+    provideRouter(routes),
     provideClientHydration(withEventReplay()),
   ],
 };

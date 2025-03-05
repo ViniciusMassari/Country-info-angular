@@ -2,14 +2,14 @@ import {
   Component,
   inject,
   input,
-  InputSignal,
-  OnDestroy,
+  type InputSignal,
+  type OnDestroy,
   signal,
-  WritableSignal,
+  type WritableSignal,
 } from '@angular/core';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { CountryCardComponent } from '../country-card/country-card.component';
-import { CountryCardDetails } from 'src/types/countryCardDetails';
+import type { CountryCardDetails } from 'src/types/countryCardDetails';
 import { distinctUntilChanged, Subject, Subscription, takeUntil } from 'rxjs';
 import { CountriesByFilterService } from './services/countries-by-filter.service';
 

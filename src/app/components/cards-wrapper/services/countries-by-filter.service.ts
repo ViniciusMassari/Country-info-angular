@@ -1,11 +1,11 @@
 import {
   HttpClient,
-  HttpErrorResponse,
+type  HttpErrorResponse,
   HttpParams,
 } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { catchError, retry, throwError, timer } from 'rxjs';
-import { CountryCardDetails } from 'src/types/countryCardDetails';
+import type { CountryCardDetails } from 'src/types/countryCardDetails';
 
 @Injectable({ providedIn: 'root' })
 export class CountriesByFilterService {
@@ -13,7 +13,7 @@ export class CountriesByFilterService {
 
   getCountriesByFilter(filter: string) {
     const COUNTRY_BY_REGION_FILTER_ENDPOINT =
-      filter && filter != ''
+      filter && filter !== ''
         ? `https://restcountries.com/v3.1/region/${filter}`
         : 'https://restcountries.com/v3.1/all';
     const params = new HttpParams().set(
@@ -31,7 +31,7 @@ export class CountriesByFilterService {
             if ([500, 503, 404].includes(error.status)) {
               throw error;
             }
-            console.log('Retrying ' + retryCount);
+            console.log(`Retrying ${retryCount}`);
             return timer(2000);
           },
         }),
@@ -44,12 +44,11 @@ export class CountriesByFilterService {
       return throwError(
         () => new Error('Network connection error, try again later')
       );
-    } else if (error.status === 404) {
+    }if (error.status === 404) {
       return throwError(
         () => new Error('Countries not found, try another filter')
       );
-    } else {
-      return throwError(() => new Error('Unexpected Error, try again later'));
     }
+      return throwError(() => new Error('Unexpected Error, try again later'));
   }
 }

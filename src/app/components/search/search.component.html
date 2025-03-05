@@ -3,8 +3,8 @@
     <div class="flex gap-2 flex-wrap">
       <label class="input rounded-full input-bordered flex items-center gap-2 ">
         Country name
-        <input data-test="input" required minlength="3" #countryName="ngModel" ngModel id="countryName"
-          name="countryName" type="text" class="grow" placeholder="Brazil..." />
+        <input autocomplete="off" id="countryName" data-test="input" required minlength="3" #countryName="ngModel"
+          ngModel id="countryName" name="countryName" type="text" class="grow" placeholder="Brazil..." />
       </label>
       <button data-test="sendButton" [disabled]="form.invalid" type="submit"
         class="btn btn-outline transition rounded-2xl">Search</button>
@@ -17,7 +17,7 @@
     </span>
   </form>
 
-  <select #select (change)="onChange(select)" data-test="filterSelector"
+  <select #select (change)="onChange(select)" id="region" autocomplete="off" data-test="filterSelector"
     class="select rounded-full select-bordered w-full max-w-xs">
     <option value="">None</option>
     <option value='africa'>Africa</option>
