@@ -34,8 +34,6 @@ export class CountryDetailsComponent implements OnDestroy {
   query = injectQuery(() => ({
     queryKey: ['country'],
     queryFn: ({ signal }) => {
-      console.log(this.param);
-
       const abort$ = fromEvent(signal, 'abort');
       return lastValueFrom(
         this.countryDetailsService
