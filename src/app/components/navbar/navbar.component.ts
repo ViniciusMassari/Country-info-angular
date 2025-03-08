@@ -5,8 +5,8 @@ import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
-  imports: [LucideAngularModule],
-  providers: [ThemeService, RouterLink],
+  imports: [LucideAngularModule, RouterLink],
+  providers: [ThemeService],
   templateUrl: './navbar.component.html',
 })
 export class NavbarComponent {

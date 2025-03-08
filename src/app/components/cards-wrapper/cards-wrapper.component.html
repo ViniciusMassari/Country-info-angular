@@ -1,10 +1,16 @@
-@let countryData = this.countryData();
+@let countryData = this.query.data();
 <section class="flex flex-col items-center justify-center sm:flex-row gap-10 flex-wrap">
   @if(countryData){
   @for (country of countryData; track country.name.common) {
   <app-country-card [countryCardInfo]="country"></app-country-card>
   }
-  } @else {
+  }
+
+  @if(query.isLoading()){
   <span class="loading loading-spinner loading-lg"></span>
+  }
+
+  @if(query.isError()){
+  <p class="text-red-600 text-lg">Error while fetching data, try again later or reload the page</p>
   }
 </section>

@@ -2,8 +2,7 @@ import {
   Component,
   inject,
   output,
-  Output,
-  OutputEmitterRef,
+  type OutputEmitterRef,
 } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -21,7 +20,7 @@ export class SearchComponent {
   onSubmit(form: NgForm) {
     if (form.invalid) return;
 
-    this.router.navigateByUrl('country/' + form.value['countryName']);
+    this.router.navigateByUrl(`country/${form.value['countryName']}`);
   }
 
   onChange(select: HTMLSelectElement): void {

@@ -1,5 +1,5 @@
-import { Component, input, InputSignal } from '@angular/core';
-import { CountryCardDetails } from '../../../types/countryCardDetails';
+import { Component, input, type InputSignal } from '@angular/core';
+import type { CountryCardDetails } from '../../../types/countryCardDetails';
 import { RouterLink } from '@angular/router';
 import { NgOptimizedImage } from '@angular/common';
 

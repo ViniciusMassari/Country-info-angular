@@ -1,5 +1,5 @@
 @let countryInfo = this.countryCardInfo();
-<a [routerLink]="['/country/', countryInfo.name.common]">
+<a [routerLink]="['/country', countryInfo.name.common]">
   <div class="card bg-base-100 shadow-xl max-w-80 max-h-96  ">
     <figure>
       <img height="400" width="320" [ngSrc]="countryInfo.flags.svg" [alt]="countryInfo.flags.alt" />

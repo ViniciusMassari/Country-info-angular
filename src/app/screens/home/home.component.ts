@@ -1,6 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnChanges } from '@angular/core';
-import { CountryCardComponent } from '../../components/country-card/country-card.component';
-import { CountryCardDetails } from '../../../types/countryCardDetails';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { SearchComponent } from '../../components/search/search.component';
 import { CardsWrapperComponent } from '../../components/cards-wrapper/cards-wrapper.component';
 
@@ -11,7 +9,7 @@ import { CardsWrapperComponent } from '../../components/cards-wrapper/cards-wrap
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent {
-  public filter: string = '';
+  public filter = '';
 
   changeFilter(event: string) {
     this.filter = event;

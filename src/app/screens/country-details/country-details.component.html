@@ -1,26 +1,27 @@
-@let countryDetails = this.countryData();
+@let countryDetails = this.query.data()?.[0];
+@let errorMessage = this.errorMessage();
 
 
 
 <section class="container mx-auto mt-2 sd:px-0 border-*">
-  <button class="btn" (click)="goBack()">
+
+  <a class="btn" (click)="goBack()" routerLinkActive="active">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-left">
       <path d="M6 8L2 12L6 16" />
       <path d="M2 12H22" />
     </svg>
     Back
-  </button>
+  </a>
 </section>
 
 
 
 
-@if(countryDetails){
-
 <section class="container mx-auto mt-2 sd:px-0 border-* sm:text-xl">
   <div class="mt-6 mx-auto ">
-    <section class="justify-center gap-10 flex flex-col items-center   sm:flex-row ">
+    <section class="justify-center gap-10 flex flex-col items-center sm:flex-row ">
+      @if(countryDetails){
       <img class="sm:w-96" [ngSrc]="countryDetails.flags.svg" width="300" height="300" [alt]="countryDetails.flags.alt"
         priority>
       <div class="mt-8 flex-col sm:flex-row mb-5">
@@ -50,13 +51,21 @@
             {{country}}</li>
         </ul>
       </div>
+      }
 
+      @if(query.isLoading()){
+      <span class="loading loading-xl self-center"></span>
+      }
+
+      @if(query.isError()){
+      <p class="text-red-600 text-lg">Error during fetching, try again later or refresh the page</p>
+      }
 
     </section>
   </div>
 
 </section>
-}
-@else {
-<p class="text-lg text-error text-center">{{errorMessage()}}</p>
+
+@if (errorMessage) {
+<p class="text-lg text-error text-center">{{errorMessage}}</p>
 }

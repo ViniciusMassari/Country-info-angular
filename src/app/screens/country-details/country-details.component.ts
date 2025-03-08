@@ -1,64 +1,59 @@
 import {
   Component,
   inject,
-  OnInit,
+  type OnDestroy,
   signal,
-  WritableSignal,
+  type WritableSignal,
 } from '@angular/core';
 import { NgFor, NgOptimizedImage } from '@angular/common';
-import { ActivatedRoute, Params, Router } from '@angular/router';
-import { CountryDetails } from 'src/types/countryDetails';
-import { whereAlpha3 } from 'iso-3166-1';
+import { ActivatedRoute, Router } from '@angular/router';
+import type { CountryDetails } from 'src/types/countryDetails';
 import { CountryDetailsService } from './service/country-details.service';
-import { HttpErrorResponse } from '@angular/common/http';
+import { fromEvent, lastValueFrom, takeUntil } from 'rxjs';
+import { injectQuery, QueryClient } from '@tanstack/angular-query-experimental';
 @Component({
   selector: 'app-country-details',
   imports: [NgOptimizedImage, NgFor],
   templateUrl: './country-details.component.html',
 })
-export class CountryDetailsComponent implements OnInit {
+export class CountryDetailsComponent implements OnDestroy {
   protected errorMessage: WritableSignal<string> = signal('');
   public countryData: WritableSignal<CountryDetails | null> = signal(null);
   protected currencyKeys: string[] = [];
-  protected languagesEntries: string = '';
-  protected borderCountries: any;
-
-  private countryDetailsService = inject(CountryDetailsService);
+  protected languagesEntries = '';
+  protected borderCountries: string[] = [];
 
   private router = inject(Router);
   private activatedRoute = inject(ActivatedRoute);
+  private queryClient = inject(QueryClient);
 
-  ngOnInit() {
-    this.activatedRoute.params.subscribe((params: Params) => {
-      this.countryDetailsService
-        .getCountryDetailsByCountryName(params['name'])
-        .subscribe({
-          next: (country) => {
-            country.forEach((countryDetails) => {
-              this.countryData.set(countryDetails);
-              this.borderCountries = countryDetails.borders.map(
-                (country) => whereAlpha3(country)?.country
-              );
+  private countryDetailsService = inject(CountryDetailsService);
 
-              this.languagesEntries = Object.entries(countryDetails.languages)
-                .map((entry) => entry[1])
-                .join(', ');
+  private param: string = this.activatedRoute.snapshot.params['name'];
 
-              this.currencyKeys = Object.keys(countryDetails.currencies);
-            });
-          },
-          error: (err: HttpErrorResponse) => {
-            console.error(err);
+  query = injectQuery(() => ({
+    queryKey: ['country'],
+    queryFn: ({ signal }) => {
+      console.log(this.param);
 
-            this.errorMessage.set(err.message);
-          },
-        });
+      const abort$ = fromEvent(signal, 'abort');
+      return lastValueFrom(
+        this.countryDetailsService
+          .getCountryDetailsByCountryName(this.param)
+          .pipe(takeUntil(abort$))
+      );
+    },
+    retry: 3,
+    retryDelay: 2000,
+  }));
+
+  ngOnDestroy() {
+    this.queryClient.invalidateQueries({
+      queryKey: ['country'],
     });
   }
 
   goBack() {
-    console.log('called');
-
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl('/home');
   }
 }
