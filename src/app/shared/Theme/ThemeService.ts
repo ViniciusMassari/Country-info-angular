@@ -1,4 +1,4 @@
-import { Injectable, OnDestroy, signal, WritableSignal } from '@angular/core';
+import { Injectable, signal, type WritableSignal } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class ThemeService {

@@ -17,7 +17,7 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideZoneChangeDetection(),
+    provideZoneChangeDetection({eventCoalescing: true}),
     provideHttpClient(withFetch()),
     provideTanStackQuery(new QueryClient()),
     provideRouter(routes),
